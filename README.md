@@ -12,6 +12,11 @@ This repo contains the source for the Unslashed Finande Governance Token (USF) b
 - make sure you have enough ETH to pay for gas (the whole process should take about 9214622 gas)
 - execute `npx hardhat deploy --network mainnet --index <n> --gasprice <g>` where **n** is the index of your account from the mnemonic (--index is optional, default is 0), **g** is gasprice in GWEI
 
+About 9214622 gas is used for deplyoment and token transfers,\
+at 100 GWEI that is 0.9214622 ETH,\
+200 GWEI: 1.8429244 ETH,\
+400 GWEI: 3.6858488 ETH
+
 for ganache, omitting the `--network` option or using `--network ganache` does the trick and for testnets, goerli (`--network goerli`) and ropsten (`--network ropsten`) allow to deploy on both.
 
 ## Content
