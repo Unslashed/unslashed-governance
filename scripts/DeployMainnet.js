@@ -27,7 +27,7 @@ async function main(accountIndex, gasPriceGWei) {
     console.log("token recipient: ", tokenRecipient)
     let sumGasUsed = ethers.BigNumber.from(0);
     // This gets the contract from 
-    const Token = await ethers.getContractFactory("USF");
+    const Token = await ethers.getContractFactory("USF", accounts[accountIndex]);
     const token = await Token.deploy(tokenRecipient, { gasPrice: gasPriceWei });
     await token.deployed();
     const minedTx1 = await token.deployTransaction.wait();
@@ -37,7 +37,7 @@ async function main(accountIndex, gasPriceGWei) {
     // Deploy Timelock
     const day = 60 * 60 * 24;
     const delay = 2 * day;
-    const Timelock = await ethers.getContractFactory("Timelock");
+    const Timelock = await ethers.getContractFactory("Timelock", accounts[accountIndex]);
     const timelock = await Timelock.deploy(timeLockAdmin, delay, { gasPrice: gasPriceWei });
     await timelock.deployed();
     const minedTx2 = await timelock.deployTransaction.wait();
@@ -45,7 +45,7 @@ async function main(accountIndex, gasPriceGWei) {
     await saveContractAddress("Timelock", timelock.address)
 
     // Deploy Governance
-    const Gov = await ethers.getContractFactory("GovernorAlpha");
+    const Gov = await ethers.getContractFactory("GovernorAlpha", accounts[accountIndex]);
     const gov = await Gov.deploy(timelock.address, token.address, guardian, { gasPrice: gasPriceWei });
     await gov.deployed();
     const minedTx3 = await gov.deployTransaction.wait();
