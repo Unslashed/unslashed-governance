@@ -24,7 +24,7 @@ const Secrets = {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  defaultNetwork: "ganache",
+  defaultNetwork: "mainnet",
   networks: {
 
     hardhat: {

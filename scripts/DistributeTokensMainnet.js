@@ -15,7 +15,7 @@ async function main(accountIndex, gasPriceGWei) {
 
   const usf = await ethers.getContractAt("USF", contractAddresses.USF);
   const usfWithSigner0 = usf.connect(accounts[accountIndex]);
-  
+
   const deployersAmount = ethers.utils.parseEther("1000");
 
   const liquidityMinersAddress = "0x54796B776160b6B180Ed95dCE0459ddE9795922F";
@@ -25,7 +25,7 @@ async function main(accountIndex, gasPriceGWei) {
   const gnosisSafeAmount = ethers.utils.parseEther("40300000").sub(deployersAmount); //(40.3 M = 43 M - 2.7 M) - deployersAmount
 
   const teamAndInvestorsAddress = "0xE8bB5f49990d16851E86698db621bCc8F834Ca1a";
-  
+
   let sumGasUsed = ethers.BigNumber.from(0);
 
   let tx;
@@ -42,7 +42,7 @@ async function main(accountIndex, gasPriceGWei) {
   tx = await usfWithSigner0.transfer(teamAndInvestorsAddress, teamAndInvestorsAmount, { gasPrice: gasPriceWei, gasLimit: 150000 });
   const minedTx3 = await tx.wait();
   sumGasUsed = sumGasUsed.add(minedTx3.gasUsed);
-  
+
   console.log(`liquidity miner's address: ${liquidityMinersAddress}`)
   console.log(`liquidity miner's address: ${await usf.balanceOf(liquidityMinersAddress)}`)
 
@@ -51,9 +51,18 @@ async function main(accountIndex, gasPriceGWei) {
 
   console.log(`deplyoer's address: ${addresses[accountIndex]}`)
   console.log(`deplyoer's balance: ${await usf.balanceOf(addresses[accountIndex])}`)
-  
+
   console.log(`team and investor's address: ${teamAndInvestorsAddress}`)
   console.log(`team and investor's balance: ${await usf.balanceOf(teamAndInvestorsAddress)}`)
+
+  
+  const lockAddress = "0x713e83d46F16eA85cc1826f886FDb2b3979b8ee5"; // TODO set real mainnet deplyoment lock address
+  const lock = await ethers.getContractAt("Lock", lockAddress);
+  const lockWithSigner0 = lock.connect(accounts[accountIndex]);
+  tx = await lockWithSigner0.setLock({ gasPrice: gasPriceWei, gasLimit: 150000 });
+  const minedTx4 = await tx.wait();
+  sumGasUsed = sumGasUsed.add(minedTx4.gasUsed);
+  console.log("Deployment lock set")
 
   console.log("token transfers sum gas used: ", sumGasUsed.toString());
 }

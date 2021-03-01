@@ -10,6 +10,14 @@ async function main(accountIndex, gasPriceGWei) {
     // Compile our Contracts, just in case
     await hre.run('compile');
 
+    const lockAddress = "0x713e83d46F16eA85cc1826f886FDb2b3979b8ee5"; // TODO set real mainnet deplyoment lock address
+    const lock = await ethers.getContractAt("Lock", lockAddress);
+
+    if (await lock.lock()){
+        console.log("Someone else already deplyoed the governance aready");
+        process.exit();
+    }
+    
     await clearContractAddress();
 
     const accounts = await ethers.getSigners();
@@ -19,13 +27,14 @@ async function main(accountIndex, gasPriceGWei) {
     }
     
     console.log("accountIndex: ", accountIndex);
-    
+
+    let sumGasUsed = ethers.BigNumber.from(0);
+
     const tokenRecipient = accounts[accountIndex].address;
     const timeLockAdmin = "0x98f8c93cC2EA65FEDEe9d02c1D3b12d728f54A1A";
     const guardian = "0xfBE57d9a3A02b629C2940f0d281EA7ddae0B47bd";
 
     console.log("token recipient: ", tokenRecipient)
-    let sumGasUsed = ethers.BigNumber.from(0);
     // This gets the contract from 
     const Token = await ethers.getContractFactory("USF", accounts[accountIndex]);
     const token = await Token.deploy(tokenRecipient, { gasPrice: gasPriceWei });
