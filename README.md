@@ -10,7 +10,7 @@ This repo contains the source for the Unslashed Finande Governance Token (USF) b
 - execute `npm install`
 - create a .env file based on .env.dist, with your mnemonic and infura id (or alternatively configure the network with your provider endpoint in `hardhat.config.js`)
 - make sure you have enough ETH to pay for gas (the whole process should take about 9214622 gas)
-- execute `npx hardhat deploy --network mainnet --index <n>` where n is the index of your account from the mnemonic (--index is optional, default is 0)
+- execute `npx hardhat deploy --network mainnet --index <n> --gasprice <g>` where **n** is the index of your account from the mnemonic (--index is optional, default is 0), **g** is gasprice in GWEI
 
 for ganache, omitting the `--network` option or using `--network ganache` does the trick and for testnets, goerli (`--network goerli`) and ropsten (`--network ropsten`) allow to deploy on both.
 

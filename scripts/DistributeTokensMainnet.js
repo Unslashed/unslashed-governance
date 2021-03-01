@@ -1,8 +1,7 @@
 
 const hre = require("hardhat");
 const ethers = hre.ethers;
-const contractAddresses = require("../ContractAddresses.json"); //for some reason if I use require here, the gnosis address is not there yet...
-
+const contractAddresses = require("../ContractAddresses.json");
 async function main(accountIndex, gasPriceGWei) {
 
   const gasPriceWei = ethers.utils.parseUnits(gasPriceGWei, "gwei");
@@ -19,13 +18,13 @@ async function main(accountIndex, gasPriceGWei) {
   
   const deployersAmount = ethers.utils.parseEther("1000");
 
-  const liquidityMinersAddress = "0x0000000000000000000000000000000000000001"; //TODO real address  
+  const liquidityMinersAddress = "0x54796B776160b6B180Ed95dCE0459ddE9795922F";
   const liquidityMinersAmount = ethers.utils.parseEther("2700000"); //2.7 M
 
-  const gnosisSafeIntermediateAddress = "0x0000000000000000000000000000000000000002"; //TODO real address  
+  const gnosisSafeIntermediateAddress = "0xf5bE8b4C82B8A681BAcF357cFB712AB9e9296Cb2";
   const gnosisSafeAmount = ethers.utils.parseEther("40300000").sub(deployersAmount); //(40.3 M = 43 M - 2.7 M) - deployersAmount
 
-  const teamAndInvestorsAddress = "0x0000000000000000000000000000000000000003"; //TODO real address  
+  const teamAndInvestorsAddress = "0xE8bB5f49990d16851E86698db621bCc8F834Ca1a";
   
   let sumGasUsed = ethers.BigNumber.from(0);
 

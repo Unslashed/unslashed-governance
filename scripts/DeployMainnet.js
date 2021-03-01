@@ -21,8 +21,8 @@ async function main(accountIndex, gasPriceGWei) {
     console.log("accountIndex: ", accountIndex);
     
     const tokenRecipient = accounts[accountIndex].address;
-    const timeLockAdmin = "0x98f8c93cC2EA65FEDEe9d02c1D3b12d728f54A1A; //TODO real address: our admin address
-    const guardian = "0xfBE57d9a3A02b629C2940f0d281EA7ddae0B47bd"; //TODO real address: our admin address
+    const timeLockAdmin = "0x98f8c93cC2EA65FEDEe9d02c1D3b12d728f54A1A";
+    const guardian = "0xfBE57d9a3A02b629C2940f0d281EA7ddae0B47bd";
 
     console.log("token recipient: ", tokenRecipient)
     let sumGasUsed = ethers.BigNumber.from(0);
