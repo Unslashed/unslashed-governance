@@ -14,8 +14,8 @@ This repo contains the source for the Unslashed Finance Governance Token (USF) b
 
 About 9214622 gas is used for deployment and token transfers,\
 at 100 GWEI that is 0.9214622 ETH,\
-200 GWEI: 1.8429244 ETH,\
-400 GWEI: 3.6858488 ETH
+at 200 GWEI: 1.8429244 ETH,\
+at 400 GWEI: 3.6858488 ETH
 
 To run on ganache, omitting the `--network` option or using `--network ganache` does the trick and for testnets, goerli (`--network goerli`) and ropsten (`--network ropsten`) allow to deploy on both.
 
