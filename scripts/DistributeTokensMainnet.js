@@ -55,14 +55,17 @@ async function main(accountIndex, gasPriceGWei) {
   console.log(`team and investor's address: ${teamAndInvestorsAddress}`)
   console.log(`team and investor's balance: ${await usf.balanceOf(teamAndInvestorsAddress)}`)
 
-  
-  const lockAddress = "0x713e83d46F16eA85cc1826f886FDb2b3979b8ee5"; // TODO set real mainnet deplyoment lock address
-  const lock = await ethers.getContractAt("Lock", lockAddress);
-  const lockWithSigner0 = lock.connect(accounts[accountIndex]);
-  tx = await lockWithSigner0.setLock({ gasPrice: gasPriceWei, gasLimit: 150000 });
-  const minedTx4 = await tx.wait();
-  sumGasUsed = sumGasUsed.add(minedTx4.gasUsed);
-  console.log("Deployment lock set")
+  //only setting lock contract on mainnet
+  const networkId = (await ethers.provider.getNetwork()).chainId;
+  if (networkId == 1) {
+    const lockAddress = "0xb75AA0eC478bAF879560579E6Ff3B5fbff4D9372"; // TODO set real mainnet deplyoment lock address
+    const lock = await ethers.getContractAt("Lock", lockAddress);
+    const lockWithSigner0 = lock.connect(accounts[accountIndex]);
+    tx = await lockWithSigner0.setLock({ gasPrice: gasPriceWei, gasLimit: 150000 });
+    const minedTx4 = await tx.wait();
+    sumGasUsed = sumGasUsed.add(minedTx4.gasUsed);
+    console.log("Deployment lock set")
+  }
 
   console.log("token transfers sum gas used: ", sumGasUsed.toString());
 }

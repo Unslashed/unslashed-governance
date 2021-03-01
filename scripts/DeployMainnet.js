@@ -10,13 +10,18 @@ async function main(accountIndex, gasPriceGWei) {
     // Compile our Contracts, just in case
     await hre.run('compile');
 
-    const lockAddress = "0x713e83d46F16eA85cc1826f886FDb2b3979b8ee5"; // TODO set real mainnet deplyoment lock address
-    const lock = await ethers.getContractAt("Lock", lockAddress);
-
-    if (await lock.lock()){
-        console.log("Someone else already deplyoed the governance aready");
-        process.exit();
+    const networkId = (await ethers.provider.getNetwork()).chainId;
+    //only checking lock contract on mainnet
+    if(networkId == 1 ){
+        const lockAddress = "0xb75AA0eC478bAF879560579E6Ff3B5fbff4D9372"; // TODO set real mainnet deplyoment lock address
+        const lock = await ethers.getContractAt("Lock", lockAddress);
+    
+        if (await lock.lock()){
+            console.log("Someone else already deplyoed the governance aready");
+            process.exit();
+        }
     }
+
     
     await clearContractAddress();
 
