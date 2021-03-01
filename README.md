@@ -1,6 +1,6 @@
 ## Introduction:
 
-This repo contains the source for the Unslashed Finande Governance Token (USF) based on the COMP token as well as the Unslashed Finance DAO based on the Compound DAO.
+This repo contains the source for the Unslashed Finance Governance Token (USF) based on the COMP token as well as the Unslashed Finance DAO based on the Compound DAO.
 
 ## How to deploy:
 
@@ -12,12 +12,12 @@ This repo contains the source for the Unslashed Finande Governance Token (USF) b
 - make sure you have enough ETH to pay for gas (the whole process should take about 9214622 gas)
 - execute `npx hardhat deploy --network mainnet --index <n> --gasprice <g>` where **g** is gasprice in GWEI and **n** is the index of your account from the mnemonic (--index is optional, default is 0)
 
-About 9214622 gas is used for deplyoment and token transfers,\
+About 9214622 gas is used for deployment and token transfers,\
 at 100 GWEI that is 0.9214622 ETH,\
 200 GWEI: 1.8429244 ETH,\
 400 GWEI: 3.6858488 ETH
 
-for ganache, omitting the `--network` option or using `--network ganache` does the trick and for testnets, goerli (`--network goerli`) and ropsten (`--network ropsten`) allow to deploy on both.
+To run on ganache, omitting the `--network` option or using `--network ganache` does the trick and for testnets, goerli (`--network goerli`) and ropsten (`--network ropsten`) allow to deploy on both.
 
 ## Content
 
@@ -54,8 +54,8 @@ All three of these components work together with their own sphere of influence. 
 
 #### **DeployMainnet.js** 
 
-Governance system contract deplyoments
+Governance system contract deployments
 
 #### **DistributeTokensMainnet.js**
 
-Sends tokens to multiple different accounts from deployer address
+Sends tokens to different accounts from the deployer address
