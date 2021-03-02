@@ -17,7 +17,7 @@ async function main(accountIndex, gasPriceGWei) {
         const lock = await ethers.getContractAt("Lock", lockAddress);
     
         if (await lock.lock()){
-            console.log("Someone else already deplyoed the governance aready");
+            console.log("Someone else already deployed the governance aready");
             process.exit();
         }
     }
