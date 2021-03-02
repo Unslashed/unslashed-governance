@@ -278,8 +278,4 @@ contract Timelock {
         return block.timestamp;
     }
 
-    function getBlockTimestampPublic() public view returns (uint) {
-        // solium-disable-next-line security/no-block-members
-        return block.timestamp;
-    }
 }
