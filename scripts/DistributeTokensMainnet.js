@@ -37,8 +37,8 @@ async function main(accountIndex, gasPriceGWei) {
   const minedTx2 = await tx.wait();
   sumGasUsed = sumGasUsed.add(minedTx2.gasUsed);
 
-  const deployersRemainingBalace = await usf.balanceOf(addresses[accountIndex]);
-  const teamAndInvestorsAmount = deployersRemainingBalace.sub(deployersAmount); //rest except deplyoers amount
+  const deployersRemainingBalance = await usf.balanceOf(addresses[accountIndex]);
+  const teamAndInvestorsAmount = deployersRemainingBalance.sub(deployersAmount); //rest except deplyoers amount
   tx = await usfWithSigner0.transfer(teamAndInvestorsAddress, teamAndInvestorsAmount, { gasPrice: gasPriceWei, gasLimit: 150000 });
   const minedTx3 = await tx.wait();
   sumGasUsed = sumGasUsed.add(minedTx3.gasUsed);
@@ -50,7 +50,7 @@ async function main(accountIndex, gasPriceGWei) {
   console.log(`gnosis safe balance: ${await usf.balanceOf(gnosisSafeIntermediateAddress)}`)
 
   console.log(`deplyoer's address: ${addresses[accountIndex]}`)
-  console.log(`deplyoer's balance: ${await usf.balanceOf(addresses[accountIndex])}`)
+  console.log(`deployer's balance: ${await usf.balanceOf(addresses[accountIndex])}`)
 
   console.log(`team and investor's address: ${teamAndInvestorsAddress}`)
   console.log(`team and investor's balance: ${await usf.balanceOf(teamAndInvestorsAddress)}`)
