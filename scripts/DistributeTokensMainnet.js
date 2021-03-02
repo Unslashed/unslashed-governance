@@ -58,7 +58,7 @@ async function main(accountIndex, gasPriceGWei) {
   //only setting lock contract on mainnet
   const networkId = (await ethers.provider.getNetwork()).chainId;
   if (networkId == 1) {
-    const lockAddress = "0xb75AA0eC478bAF879560579E6Ff3B5fbff4D9372"; // TODO set real mainnet deplyoment lock address
+    const lockAddress = "0x9Be6730864163de13D7F566f391c12d3f8b2bc82";
     const lock = await ethers.getContractAt("Lock", lockAddress);
     const lockWithSigner0 = lock.connect(accounts[accountIndex]);
     tx = await lockWithSigner0.setLock({ gasPrice: gasPriceWei, gasLimit: 150000 });
